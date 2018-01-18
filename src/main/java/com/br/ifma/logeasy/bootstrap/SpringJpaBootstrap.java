@@ -93,7 +93,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         roleService.saveOrUpdate(adminRole);
         log.info("Saved role" + adminRole.getRole());
     }
-    private void assignUsersToUserRole() {
+    
+    @SuppressWarnings("unchecked")
+	private void assignUsersToUserRole() {
         List<Role> roles = (List<Role>) roleService.listAll();
         List<User> users = (List<User>) userService.listAll();
 
@@ -108,6 +110,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             }
         });
     }
+    
+    @SuppressWarnings("unchecked")
     private void assignUsersToAdminRole() {
         List<Role> roles = (List<Role>) roleService.listAll();
         List<User> users = (List<User>) userService.listAll();

@@ -1,14 +1,20 @@
 package com.br.ifma.logeasy.services.security;
 
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Collection;
 
 
 public class UserDetailsImpl implements UserDetails {
 
-    private Collection<SimpleGrantedAuthority> authorities;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Collection<SimpleGrantedAuthority> authorities;
     private String username;
     private String password;
     private Boolean enabled = true;

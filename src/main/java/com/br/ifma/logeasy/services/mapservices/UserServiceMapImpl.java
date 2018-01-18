@@ -55,7 +55,7 @@ public class UserServiceMapImpl extends AbstractMapService implements UserServic
     @Override
     public User findByUsername(String userName) {
 
-        Optional returnUser =  domainMap.values().stream().filter(new Predicate<DomainObject>() {
+        Optional<?> returnUser =  domainMap.values().stream().filter(new Predicate<DomainObject>() {
             @Override
             public boolean test(DomainObject domainObject) {
                 User user = (User) domainObject;

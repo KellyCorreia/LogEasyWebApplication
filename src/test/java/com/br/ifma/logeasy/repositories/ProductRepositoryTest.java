@@ -67,7 +67,7 @@ public class ProductRepositoryTest {
 
         int count = 0;
 
-        for(Product p : products){
+        for(@SuppressWarnings("unused") Product p : products){
             count++;
         }
 
