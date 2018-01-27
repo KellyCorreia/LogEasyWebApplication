@@ -11,7 +11,7 @@ public class AbstractDomainClass implements DomainObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    protected Integer id;
 
     @Version
     private Integer version;

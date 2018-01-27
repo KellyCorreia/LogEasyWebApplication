@@ -1,16 +1,24 @@
 package com.br.ifma.logeasy.domain;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 /**
  * Created by jt on 12/14/15.
  */
 @Entity
-public class User extends AbstractDomainClass  {
+public class User extends AbstractDomainClass {
 
     private String username;
+    private String email;
 
     @Transient
     private String password;
@@ -88,4 +96,12 @@ public class User extends AbstractDomainClass  {
     public void setFailedLoginAttempts(Integer failedLoginAttempts) {
         this.failedLoginAttempts = failedLoginAttempts;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

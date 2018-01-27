@@ -43,11 +43,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadProducts();
+        /*loadProducts();
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
-        assignUsersToAdminRole();
+        assignUsersToAdminRole();*/
     }
 
     private void loadProducts() {
@@ -71,12 +71,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private void loadUsers() {
-        User user1 = new User();
+        User user1;
+        user1 = new User();
         user1.setUsername("user");
         user1.setPassword("user");
         userService.saveOrUpdate(user1);
 
-        User user2 = new User();
+        User user2;
+        user2 = new User();
         user2.setUsername("admin");
         user2.setPassword("admin");
         userService.saveOrUpdate(user2);
