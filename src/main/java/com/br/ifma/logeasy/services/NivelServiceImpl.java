@@ -16,7 +16,7 @@ public class NivelServiceImpl implements NivelService {
     }
 
     @Override
-    public Iterable<Nivel> listAllNivels() {
+    public Iterable<Nivel> listAllNiveis() {
         return nivelRepository.findAll();
     }
 

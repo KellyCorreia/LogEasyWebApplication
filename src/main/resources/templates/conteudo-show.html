@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>LogEasy WebApplication</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+     <form class="form-horizontal" th:action="@{/logout}" method="post">
+        <div class="form-group">
+            <div class="col-sm-10"><h2>Product Details</h2></div>
+            <div class="col-sm-2" style="padding-top: 25px;">
+         		<span sec:authorize="isAuthenticated()">
+              		<input type="submit" value="Sign Out"/>
+           		</span>
+           	</div>
+        </div>
+       	<div class="form-group">
+           	<label class="col-sm-2 control-label">Conteúdo Id:</label>
+            <div class="col-sm-10">
+            	<p class="form-control-static" th:text="${conteudo.id}">Conteúdo Id</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Lição:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" th:text="${conteudo.licao}">lição</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dica:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" th:text="${conteudo.dica}">dica</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Professor:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" th:text="${conteudo.professor.nome}">professor</p>
+            </div>
+        </div>
+     </form>
+</div>
+
+</body>
+</html>

@@ -7,16 +7,22 @@
 
 <div class="container">
     <div th:fragment="header">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" th:href="@{/products}">Products</a></li>
-                        <li><a href="#" th:href="@{/product/new}" sec:authorize="hasAuthority('ADMIN')">Create Product</a></li>
-                        <li><a href="#" th:href="@{/login}">Sign In</a></li>
-                    </ul>
                 </div>
+                
+                <ul class="nav navbar-nav">
+                   	<li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Conteúdo<span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="#" th:href="@{/conteudos}">Conteúdos</a></li>
+				          <li><a href="#" th:href="@{/conteudo/new}" sec:authorize="hasAuthority('ADMIN')">Novo Conteúdo</a></li>
+				        </ul>
+				    </li>
+                    <li><a href="#" th:href="@{/login}">Sign In</a></li>
+                 </ul>
             </div>
         </nav>
         <div class="welcome">
