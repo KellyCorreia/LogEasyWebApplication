@@ -9,10 +9,16 @@ import com.br.ifma.logeasy.repositories.ProfessorRepository;
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
     private ProfessorRepository professorRepository;
+    private UserService userService;
 
     @Autowired
     public void setProfessorRepository(ProfessorRepository professorRepository) {
         this.professorRepository = professorRepository;
+    }
+    
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -27,6 +33,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 
     @Override
     public Professor saveProfessor(Professor professor) {
+    	professor.setUsuario(
+    			userService.criptografaSenha(professor.getUsuario()));
         return professorRepository.save(professor);
     }
 

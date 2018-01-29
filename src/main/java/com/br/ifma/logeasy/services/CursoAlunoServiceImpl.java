@@ -3,35 +3,35 @@ package com.br.ifma.logeasy.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.ifma.logeasy.domain.Product;
-import com.br.ifma.logeasy.repositories.ProductRepository;
+import com.br.ifma.logeasy.domain.CursoAluno;
+import com.br.ifma.logeasy.repositories.CursoAlunoRepository;
 
 @Service
-public class CursoAlunoServiceImpl implements ProductService {
-    private ProductRepository productRepository;
+public class CursoAlunoServiceImpl implements CursoAlunoService {
+    private CursoAlunoRepository cursoAlunoRepository;
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setCursoAlunoRepository(CursoAlunoRepository cursoAlunoRepository) {
+        this.cursoAlunoRepository = cursoAlunoRepository;
     }
 
     @Override
-    public Iterable<Product> listAllProducts() {
-        return productRepository.findAll();
+    public Iterable<CursoAluno> listAllCursoAlunos() {
+        return cursoAlunoRepository.findAll();
     }
 
     @Override
-    public Product getProductById(Integer id) {
-        return productRepository.findOne(id);
+    public CursoAluno getCursoAlunoById(Integer id) {
+        return cursoAlunoRepository.findOne(id);
     }
 
     @Override
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
+    public CursoAluno saveCursoAluno(CursoAluno cursoAluno) {
+        return cursoAlunoRepository.save(cursoAluno);
     }
 
     @Override
-    public void deleteProduct(Integer id) {
-        productRepository.delete(id);
+    public void deleteCursoAluno(Integer id) {
+        cursoAlunoRepository.delete(id);
     }
 }

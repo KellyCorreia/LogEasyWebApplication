@@ -1,14 +1,14 @@
 package com.br.ifma.logeasy.services;
 
 
-import com.br.ifma.logeasy.domain.Curso;
+import com.br.ifma.logeasy.domain.CursoAluno;
 
 public interface CursoAlunoService {
-    Iterable<Curso> listAllCursos();
+    Iterable<CursoAluno> listAllCursoAlunos();
 
-    Curso getCursoById(Integer id);
+    CursoAluno getCursoAlunoById(Integer id);
 
-    Curso saveCurso(Curso curso);
+    CursoAluno saveCursoAluno(CursoAluno CursoAluno);
 
-    void deleteCurso(Integer id);
+    void deleteCursoAluno(Integer id);
 }

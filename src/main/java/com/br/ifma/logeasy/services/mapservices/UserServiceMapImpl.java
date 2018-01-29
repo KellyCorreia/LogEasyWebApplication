@@ -65,4 +65,12 @@ public class UserServiceMapImpl extends AbstractMapService implements UserServic
 
         return (User) returnUser.get();
     }
+
+	@Override
+	public User criptografaSenha(User usuario) {
+		if(usuario.getPassword() != null){
+			usuario.setEncryptedPassword(encryptionService.encryptString(usuario.getPassword()));
+        }
+		return usuario;
+	}
 }

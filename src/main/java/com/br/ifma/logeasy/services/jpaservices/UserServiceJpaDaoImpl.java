@@ -70,4 +70,12 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
 
         return em.createQuery("from User where userName = :userName", User.class).setParameter("userName", userName).getSingleResult();
     }
+
+	@Override
+	public User criptografaSenha(User usuario) {
+		 if(usuario.getPassword() != null){
+			 usuario.setEncryptedPassword(encryptionService.encryptString(usuario.getPassword()));
+	        }
+		return usuario;
+	}
 }

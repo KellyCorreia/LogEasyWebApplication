@@ -61,4 +61,13 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+
+	@Override
+	public User criptografaSenha(User usuario) {
+		if(usuario.getPassword() != null){
+			usuario.setEncryptedPassword(encryptionService.encryptString(usuario.getPassword()));
+        }
+        return usuario;
+	}
 }

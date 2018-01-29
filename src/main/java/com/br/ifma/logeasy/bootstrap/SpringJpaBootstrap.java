@@ -1,26 +1,32 @@
 package com.br.ifma.logeasy.bootstrap;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.br.ifma.logeasy.domain.Disciplina;
 import com.br.ifma.logeasy.domain.Product;
+import com.br.ifma.logeasy.domain.Professor;
 import com.br.ifma.logeasy.domain.Role;
 import com.br.ifma.logeasy.domain.User;
+import com.br.ifma.logeasy.repositories.DisciplinaRepository;
 import com.br.ifma.logeasy.repositories.ProductRepository;
+import com.br.ifma.logeasy.services.ProfessorService;
 import com.br.ifma.logeasy.services.RoleService;
 import com.br.ifma.logeasy.services.UserService;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ProductRepository productRepository;
+    private DisciplinaRepository disciplinaRepository;
     private UserService userService;
+    private ProfessorService professorService;
     private RoleService roleService;
 
     private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
@@ -28,6 +34,16 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+    
+    @Autowired
+    public void setProfessorService(ProfessorService professorService) {
+        this.professorService = professorService;
+    }
+    
+    @Autowired
+    public void setDisciplinaRepository(DisciplinaRepository disciplinaRepository) {
+        this.disciplinaRepository = disciplinaRepository;
     }
 
     @Autowired
@@ -43,11 +59,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        /*loadProducts();
-        loadUsers();
-        loadRoles();
-        assignUsersToUserRole();
-        assignUsersToAdminRole();*/
+        //loadDisciplinas();
+        //loadUsers();
+        //loadProfessores();
+        //loadRoles();
+        //assignUsersToUserRole();
+        //assignUsersToAdminRole();
     }
 
     private void loadProducts() {
@@ -69,6 +86,26 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
         log.info("Saved Mug - id:" + mug.getId());
     }
+    
+    private void loadDisciplinas() {
+        Disciplina discip1 = new Disciplina();
+        discip1.setCodigo("Math0001");
+        discip1.setDescricao("Matemática Basica - do 6º ao 9º ano");
+        discip1.setNome("Matemática Basica");
+        
+        disciplinaRepository.save(discip1);
+
+        log.info("Disciplina Salva - id: " + discip1.getId());
+
+        Disciplina discip2 = new Disciplina();
+        discip2.setCodigo("Logi0001");
+        discip2.setDescricao("Lógica de Programação Básica");
+        discip2.setNome("Lógica de Programação");
+        
+        disciplinaRepository.save(discip2);
+
+        log.info("Disciplina Salva - id: " + discip2.getId());
+    }
 
     private void loadUsers() {
         User user1;
@@ -82,6 +119,27 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         user2.setUsername("admin");
         user2.setPassword("admin");
         userService.saveOrUpdate(user2);
+
+    }
+    
+   private void loadProfessores() {
+        /*User user1;
+        user1 = new User();
+        user1.setUsername("user");
+        user1.setPassword("user");
+        userService.saveOrUpdate(user1);
+        Professor prof1*/
+        
+        User user2;
+        user2 = new User();
+        user2.setUsername("admin");
+        user2.setPassword("admin");
+        //userService.saveOrUpdate(user2);
+        Professor professor = new Professor();
+        professor.setCodigo("PRF0001");
+        professor.setNome("Maria Prof");
+        professor.setUsuario(user2);
+        professorService.saveProfessor(professor);
 
     }
 
