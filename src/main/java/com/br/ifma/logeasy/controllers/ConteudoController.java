@@ -1,6 +1,8 @@
 package com.br.ifma.logeasy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +45,9 @@ public class ConteudoController {
 
     @RequestMapping(value = "/conteudos", method = RequestMethod.GET)
     public String list(Model model){
-        model.addAttribute("conteudos", conteudoService.listAllConteudos());
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        model.addAttribute("conteudos", conteudoService.listConteudosByProfessor(professorService.findByUsername(name)));
         return "conteudos";
     }
 
@@ -65,7 +69,6 @@ public class ConteudoController {
     @RequestMapping("conteudo/new")
     public String newConteudo(Model model){
         model.addAttribute("conteudo", new Conteudo());
-        model.addAttribute("professores", professorService.listAllProfessors());
         model.addAttribute("cursos", cursoService.listAllCursos());
         model.addAttribute("niveis", nivelService.listAllNiveis());
         return "conteudo-form";
@@ -73,7 +76,11 @@ public class ConteudoController {
 
     @RequestMapping(value = "conteudo", method = RequestMethod.POST)
     public String saveConteudo(Conteudo conteudo){
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        conteudo.setProfessor(professorService.findByUsername(name));
         conteudoService.saveConteudo(conteudo);
+        
         return "redirect:/conteudo/show/" + conteudo.getId();
     }
 

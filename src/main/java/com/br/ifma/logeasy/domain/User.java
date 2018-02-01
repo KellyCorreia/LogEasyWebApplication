@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
@@ -17,6 +18,9 @@ public class User extends AbstractDomainClass {
 
     private String username;
     private String email;
+    
+    @OneToOne(mappedBy="usuario")
+    private Professor professor;
 
     @Transient
     private String password;
@@ -101,5 +105,13 @@ public class User extends AbstractDomainClass {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.ifma.logeasy.domain.Professor;
+import com.br.ifma.logeasy.domain.User;
 import com.br.ifma.logeasy.repositories.ProfessorRepository;
 
 @Service
@@ -42,4 +43,10 @@ public class ProfessorServiceImpl implements ProfessorService {
     public void deleteProfessor(Integer id) {
         professorRepository.delete(id);
     }
+
+	@Override
+	public Professor findByUsername(String username) {
+		User user = userService.findByUsername(username);
+		return user.getProfessor();
+	}
 }

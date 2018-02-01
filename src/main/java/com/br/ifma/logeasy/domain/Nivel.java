@@ -3,6 +3,7 @@ package com.br.ifma.logeasy.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -20,6 +21,8 @@ public class Nivel extends AbstractDomainClass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String descricao;
+	
+	private int ordem;
 
 	private int pontosQuestaoDefault;
 
@@ -28,7 +31,7 @@ public class Nivel extends AbstractDomainClass implements Serializable {
 	private int qtdPontosInicial;
 
 	//bi-directional many-to-one association to Tema
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idambiente")
 	private Ambiente ambiente;
 	
@@ -93,4 +96,13 @@ public class Nivel extends AbstractDomainClass implements Serializable {
 	public void setConteudos(List<Conteudo> conteudos) {
 		this.conteudos = conteudos;
 	}
+
+	public int getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(int ordem) {
+		this.ordem = ordem;
+	}
+	
 }
