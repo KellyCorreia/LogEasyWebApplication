@@ -24,6 +24,8 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 
 	private String dica;
 	
+	private String nome;
+	
 	//bi-directional many-to-one association to Professor
 	@ManyToOne
 	@JoinColumn(name="idprofessor")
@@ -109,5 +111,13 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 	@Override
 	public String toString() {
 		return this.id + " - " + this.dica + " - " + this.licao;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

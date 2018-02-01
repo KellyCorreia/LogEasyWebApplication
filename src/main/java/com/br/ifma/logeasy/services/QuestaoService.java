@@ -4,7 +4,7 @@ package com.br.ifma.logeasy.services;
 import com.br.ifma.logeasy.domain.Questao;
 
 public interface QuestaoService {
-    Iterable<Questao> listAllQuestaos();
+    Iterable<Questao> listAllQuestoes();
 
     Questao getQuestaoById(Integer id);
 

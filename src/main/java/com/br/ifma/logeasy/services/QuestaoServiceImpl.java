@@ -16,7 +16,7 @@ public class QuestaoServiceImpl implements QuestaoService {
     }
 
     @Override
-    public Iterable<Questao> listAllQuestaos() {
+    public Iterable<Questao> listAllQuestoes() {
         return questaoRepository.findAll();
     }
 

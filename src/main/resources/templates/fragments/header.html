@@ -21,6 +21,13 @@
 				          <li><a href="#" th:href="@{/conteudo/new}" sec:authorize="hasAuthority('ADMIN')">Novo Conte√∫do</a></li>
 				        </ul>
 				    </li>
+				    <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quest„o<span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="#" th:href="@{/questoes}">Questoes</a></li>
+				          <li><a href="#" th:href="@{/questao/new}" sec:authorize="hasAuthority('ADMIN')">Nova Quest„o</a></li>
+				        </ul>
+				    </li>
                     <li><a href="#" th:href="@{/login}">Sign In</a>
                     	</li>
                  </ul>
