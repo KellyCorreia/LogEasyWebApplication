@@ -68,4 +68,10 @@ public class Professor extends AbstractDomainClass implements Serializable {
 	public void setUsuario(User usuario) {
 		this.usuario = usuario;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Professor prof = (Professor) obj;
+		return this.id.equals(prof.id);
+	}
 }
