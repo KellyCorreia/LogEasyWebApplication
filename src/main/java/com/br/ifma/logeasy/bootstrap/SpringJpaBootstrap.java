@@ -74,12 +74,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadProfessores();
-        loadRoles();
-        assignUsersToAdminRole();
-        loadDisciplinas();
-        loadAmbientesNiveis();
-        loadCursos();
+        //loadProfessores();
+        //loadRoles();
+        //assignUsersToAdminRole();
+        //loadDisciplinas();
+        //loadAmbientesNiveis();
+        //loadCursos();
     }
     
     private void loadProfessores() {

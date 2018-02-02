@@ -14,6 +14,13 @@
                 </div>
                 
                 <ul class="nav navbar-nav">
+                	<li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplina<span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="#" th:href="@{/disciplinas}">Disciplinas</a></li>
+				          <li><a href="#" th:href="@{/disciplina/new}" sec:authorize="hasAuthority('ADMIN')">Nova Disciplina</a></li>
+				        </ul>
+				    </li>
                    	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Conteúdo<span class="caret"></span></a>
 				        <ul class="dropdown-menu">
