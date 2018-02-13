@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+	<meta charset="UTF-8"/>
     <title>LogEasy WebApplication</title>
     <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
@@ -12,7 +12,7 @@
 
     <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
-            <div class="col-sm-10"> <h2>Conteúdo Create/Update</h2></div>
+            <div class="col-sm-10"> <h2>ConteÃºdo Create/Update</h2></div>
             <div class="col-sm-2" style="padding-top: 30px;">
                 <input  type="submit" value="Sign Out"/>
             </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Lição:</label>
+                <label class="col-sm-2 control-label">LiÃ§Ã£o:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{licao}"/>
                 </div>
@@ -51,10 +51,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Nível:</label>
+                <label class="col-sm-2 control-label">NÃ­vel:</label>
                 <div class="col-sm-10">
                     <select class="form-control" th:field="*{nivel}">
-					    <option value="0">Selecione um nível</option>
+					    <option value="0">Selecione um nÃ­vel</option>
 					    <option th:each="nivel : ${niveis}" th:value="${nivel.id}" th:text="${nivel.descricao}"></option>
 					</select>
                 </div>

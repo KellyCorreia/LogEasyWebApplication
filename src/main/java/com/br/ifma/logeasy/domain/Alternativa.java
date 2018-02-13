@@ -3,6 +3,7 @@ package com.br.ifma.logeasy.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,7 @@ public class Alternativa extends AbstractDomainClass implements Serializable {
 
 	//bi-directional many-to-one association to Questao
 	@ManyToOne
-	@JoinColumn(name="idquestao")
+	@JoinColumn(name="idquestao", referencedColumnName = "id", nullable = false)
 	private Questao questao;
 
 	//bi-directional many-to-one association to AlternativaAluno

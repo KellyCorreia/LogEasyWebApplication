@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head lang="en">
+<head lang="pt-br">
+	<meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
 </head>
 <body>
@@ -21,6 +22,13 @@
 				          <li><a href="#" th:href="@{/disciplina/new}" sec:authorize="hasAuthority('ADMIN')">Nova Disciplina</a></li>
 				        </ul>
 				    </li>
+				    <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cursos<span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="#" th:href="@{/cursos}">Cursos</a></li>
+				          <li><a href="#" th:href="@{/curso/new}" sec:authorize="hasAuthority('ADMIN')">Novo Curso</a></li>
+				        </ul>
+				    </li>
                    	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Conteúdo<span class="caret"></span></a>
 				        <ul class="dropdown-menu">
@@ -29,10 +37,10 @@
 				        </ul>
 				    </li>
 				    <li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quest�o<span class="caret"></span></a>
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questão<span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="#" th:href="@{/questoes}">Questoes</a></li>
-				          <li><a href="#" th:href="@{/questao/new}" sec:authorize="hasAuthority('ADMIN')">Nova Quest�o</a></li>
+				          <li><a href="#" th:href="@{/questoes}">Questões</a></li>
+				          <li><a href="#" th:href="@{/questao/new}" sec:authorize="hasAuthority('ADMIN')">Nova Questão</a></li>
 				        </ul>
 				    </li>
                     <li><a href="#" th:href="@{/login}">Sign In</a>
@@ -46,13 +54,13 @@
         <div class="welcome">
             <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
         </div>
-        <div class="jumbotron">
+ <!--        <div class="jumbotron">
             <div class="row text-center">
                 <div class="">
                     <h2>LogEasy Professor</h2>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

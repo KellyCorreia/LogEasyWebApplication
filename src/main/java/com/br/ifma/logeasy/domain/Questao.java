@@ -2,6 +2,8 @@ package com.br.ifma.logeasy.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,10 +25,11 @@ public class Questao extends AbstractDomainClass implements Serializable {
 	private Conteudo conteudo;
 
 	//bi-directional many-to-one association to Alternativa
-	@OneToMany(mappedBy="questao")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="questao")
 	private List<Alternativa> alternativas;
 
 	public Questao() {
+		this.alternativas = new ArrayList<Alternativa>();
 	}
 
 	public String getEnunciado() {

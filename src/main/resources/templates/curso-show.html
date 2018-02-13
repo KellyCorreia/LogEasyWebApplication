@@ -12,7 +12,7 @@
 
      <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
-            <div class="col-sm-10"><h2>Detalhes do Disciplina</h2></div>
+            <div class="col-sm-10"><h2>Detalhes do Curso</h2></div>
             <div class="col-sm-2" style="padding-top: 25px;">
          		<span sec:authorize="isAuthenticated()">
               		<input type="submit" value="Sign Out"/>
@@ -20,27 +20,33 @@
            	</div>
         </div>
        	<div class="form-group">
-           	<label class="col-sm-2 control-label">Disciplina Id:</label>
+           	<label class="col-sm-2 control-label">Curso Id:</label>
             <div class="col-sm-10">
-            	<p class="form-control-static" th:text="${disciplina.id}">disciplina Id</p>
+            	<p class="form-control-static" th:text="${curso.id}">Curso Id</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Código:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" th:text="${disciplina.codigo}">codigo</p>
+                <p class="form-control-static" th:text="${curso.codigo}">Código</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Nome:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" th:text="${disciplina.nome}">nome</p>
+                <p class="form-control-static" th:text="${curso.nome}">Nome</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Descrição:</label>
             <div class="col-sm-10">
-                <p class="form-control-static" th:text="${disciplina.descricao}">descricao</p>
+                <p class="form-control-static" th:text="${curso.descricao}">Descricao</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Disciplina:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" th:text="${curso.disciplina.nome}">Disciplina</p>
             </div>
         </div>
      </form>

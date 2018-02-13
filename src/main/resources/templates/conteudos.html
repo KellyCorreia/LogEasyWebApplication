@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
-
+	<meta charset="UTF-8"/>
     <title>LogEasy WebApplication</title>
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
@@ -14,7 +14,7 @@
 
     <div th:if="${not #lists.isEmpty(conteudos)}">
         <form th:action="@{/logout}" method="post">
-            <div class="col-sm-10"><h2>Lista de Conte�dos</h2></div>
+            <div class="col-sm-10"><h2>Lista de Conteúdos</h2></div>
             <div class="col-sm-2" style="padding-top: 30px;">
                      <span sec:authorize="isAuthenticated()">
 
@@ -26,20 +26,20 @@
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
-                <th>Lição</th>
+                <th>LiÃ§Ã£o</th>
                 <th>Curso</th>
                 <th>Professor</th>
-                <th>Nível</th>
+                <th>NÃ­vel</th>
                 <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
             </tr>
             <tr th:each="conteudo : ${conteudos}">
                 <td th:text="${conteudo.id}"><a href="/conteudo/${conteudo.id}">Id</a></td>
-                <td th:text="${conteudo.licao}">Lição</td>
+                <td th:text="${conteudo.licao}">LiÃ§Ã£o</td>
                 <td th:text="${conteudo.curso.nome}">Curso</td>
                 <td th:text="${conteudo.professor.nome}">Professor</td>
-                <td th:text="${conteudo.nivel.descricao}">Nível</td>
+                <td th:text="${conteudo.nivel.descricao}">NÃ­vel</td>
                 <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/conteudo/show/' + conteudo.id}">View</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/conteudo/edit/' + conteudo.id}">Edit</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/conteudo/delete/' + conteudo.id}">Delete</a></td>
