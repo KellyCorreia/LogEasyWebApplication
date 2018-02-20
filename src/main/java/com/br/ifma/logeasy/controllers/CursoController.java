@@ -1,8 +1,6 @@
 package com.br.ifma.logeasy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.br.ifma.logeasy.domain.Curso;
 import com.br.ifma.logeasy.services.CursoService;
 import com.br.ifma.logeasy.services.DisciplinaService;
-import com.br.ifma.logeasy.services.NivelService;
-import com.br.ifma.logeasy.services.ProfessorService;
+import com.mysql.jdbc.StringUtils;
 
 @Controller
 public class CursoController {

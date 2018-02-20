@@ -50,6 +50,7 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 	private List<Questao> questoes;
 
 	public Conteudo() {
+		this.curso = new Curso();
 	}
 
 	public String getLicao() {

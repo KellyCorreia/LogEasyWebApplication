@@ -40,6 +40,7 @@ public class Curso extends AbstractDomainClass implements Serializable {
 	
 
 	public Curso() {
+		this.disciplina = new Disciplina();
 	}
 
 	public String getDescricao() {
