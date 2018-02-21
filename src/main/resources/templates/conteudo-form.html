@@ -3,18 +3,7 @@
 <head>
 	<meta charset="UTF-8"/>
     <title>LogEasy WebApplication</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
-    <script type="text/javascript">
-	    function openCursoSearchModal2(){
-	    	alert("oi");
-	    	$("#cursoSearchModal").modal("show");
-	    	/* $.ajax({
-	    		$("#cursoSearchModalHolder").html(data);
-	    		$("#cursoSearchModal").modal("show");
-	    	}); */
-	    }
-    </script>
     <script type="text/javascript">
 	    function openCursoSearchModal(){
 	    	$.ajax({
@@ -26,9 +15,30 @@
 	    	});
 	    }
 	    
+	    function getCurso(cursoId, cursoNome){
+	        $('#curso-nome').val(cursoNome);
+	        $('#curso-id').val(cursoId);
+	        $("#cursoSearchModal").modal('hide');
+	        $(".modal-backdrop").remove();
+	    }
+	    
+	    function searchCursos() {
+	    	//Para evitar que o modal seja fechado no submit
+	        event.preventDefault();
+	        $form = document.getElementById('formcurso');
+	        fordata = serialize($form);
+	        $.post($form.action, fordata, function(data){
+	        	$("#cursoSearchModalHolder").html(data);
+    			$("#cursoSearchModal").modal("show");
+	        });
+	    }
+	    
+	    //não funciona, usar a de cima
 	    function myFunction() {
-	    	$("#formcurso").on("submit", function (e) {
+	    	$("form[name='formcurso']").submit(function( event ) {
+	    		console.log('indo');
 	    		e.preventDefault();
+	    		console.log('submetendo');
 	            $.ajax({
 	                url: "/buscaCursos",
 	                type: "POST",
@@ -38,29 +48,13 @@
 	            });
 	        })
 	    }
-	    
-	    $(document).ready(function() {
-	    	$("#formcurso").on("submit", function (e) {
-	    		e.preventDefault();
-	    		alert('teste');
-    		  var frm = this;
-    		  $.ajax({ 
-    		    url:frm.attr('action'),  
-    		    data:$(frm).serialize(),  
-    		    success:function(data){
-    		      
-    		    }  
-    		  });
-    		  return false;
-    		}); 
-        });
     </script>
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <form class="form-horizontal" th:action="@{/logout}" method="post">
+    <form id="formlogout" name="formlogout" class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
             <div class="col-sm-10"> <h2>Conteúdo Create/Update</h2></div>
             <div class="col-sm-2" style="padding-top: 30px;">
@@ -70,13 +64,14 @@
     </form>
 
     <div>
-        <form class="form-horizontal" th:object="${conteudo}" th:action="@{/conteudo}" method="post">
+        <form id="formconteudo" name="formconteudo" class="form-horizontal" th:object="${conteudo}" th:action="@{/conteudo}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
+            <input id="curso-id" type="hidden" th:field="*{curso}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Curso:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{curso.nome}"/>
+                    <input id="curso-nome" type="text" class="form-control" th:field="*{curso.nome}"/>
                     <button type="button" class="btn btn-default" th:onclick="'javascript:openCursoSearchModal();'">Buscar</button>
                 </div>
             </div>
@@ -114,8 +109,7 @@
         <div id="cursoSearchModalHolder"></div>
     </div>
 </div>
-<div id="cursoSearchModal" class="modal fade" role="dialog"
-	th:fragment="modalSearchCurso">
+<div id="cursoSearchModal" class="modal fade" role="dialog" th:fragment="modalSearchCurso">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -145,14 +139,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit"  th:text="Buscar" id="registerbtn" name="registerbtn">Buscar</button>
+						<button type="button"  th:text="Buscar" id="registerbtn" onclick="searchCursos()">Buscar</button>
 					</div>
 				</div>
 			</form>
 			<div class="modal-footer">
 				<div id="divcursos" th:if="${not #lists.isEmpty(cursos)}">
 					<div class="col-sm-10"><h2>Lista de Cursos</h2></div>
-					<table class="table table-striped">
+					<table id="tabela-cursos" class="table table-striped">
 						<tr>
 							<th>Id</th>
 							<th>Código</th>
@@ -165,7 +159,7 @@
 							<td th:text="${curso.codigo}">Código</td>
 							<td th:text="${curso.nome}">Nome</td>
 							<td th:text="${curso.descricao}">Descrição</td>
-							<td><a th:href="${'/curso/show/' + curso.id}" data-dismiss="modal">Selecionar</a></td>
+							<td><a href="#" th:onclick="'javascript:getCurso(\'' + ${curso.id} + '\', \'' + ${curso.nome} + '\');'" data-dismiss="modal">Selecionar</a></td>
 						</tr>
 					</table>
 				</div>
