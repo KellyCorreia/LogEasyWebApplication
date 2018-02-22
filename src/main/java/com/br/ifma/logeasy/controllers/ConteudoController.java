@@ -115,6 +115,7 @@ public class ConteudoController {
     
     @RequestMapping(value = "/buscaCursos")
     public String searchCursos(Curso curso, Model model){
+    	System.out.println("CHEGOU: " + curso.getDisciplina().getDescricao());
     	if(!(curso.getDisciplina() == null)) {
     		model.addAttribute("cursos", cursoService.listCursosByDisciplina(curso.getDisciplina()));
     	}else if(!StringUtils.isEmptyOrWhitespaceOnly(curso.getCodigo())) {
@@ -122,6 +123,7 @@ public class ConteudoController {
     	}else if(!StringUtils.isEmptyOrWhitespaceOnly(curso.getNome())) {
     		model.addAttribute("cursos", cursoService.listCursosByNome(curso.getNome()));
     	}        
+    	model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "conteudo-form :: modalSearchCurso";
     }
     /*
