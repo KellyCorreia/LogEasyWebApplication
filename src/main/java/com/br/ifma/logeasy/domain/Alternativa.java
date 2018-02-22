@@ -33,6 +33,8 @@ public class Alternativa extends AbstractDomainClass implements Serializable {
 	private List<AlternativaAluno> alternativaAlunos;
 
 	public Alternativa() {
+		this.texto = "";
+		this.valor = false;
 	}
 
 	public String getTexto() {
@@ -65,6 +67,18 @@ public class Alternativa extends AbstractDomainClass implements Serializable {
 
 	public void setAlternativaAlunos(List<AlternativaAluno> alternativaAlunos) {
 		this.alternativaAlunos = alternativaAlunos;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		Alternativa alt = (Alternativa) obj;
+		
+		return alt.getTexto().equals(this.getTexto());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.texto.hashCode();
 	}
 
 }

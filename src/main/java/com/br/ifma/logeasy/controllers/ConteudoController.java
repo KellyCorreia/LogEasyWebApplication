@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.br.ifma.logeasy.domain.Conteudo;
 import com.br.ifma.logeasy.domain.Curso;
@@ -126,6 +128,30 @@ public class ConteudoController {
     	model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "conteudo-form :: modalSearchCurso";
     }
+    
+    @RequestMapping("conteudocurso/new")
+    public String newCurso(Model model){
+    	Curso curso = new Curso();
+    	curso.setCodigo("TESTE-XXX");
+        model.addAttribute("curso", curso);
+        model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
+        return "conteudo-form :: modalNovoCurso";
+    }
+
+    @RequestMapping(value = "conteudocurso", method = RequestMethod.POST)
+    public @ResponseBody Curso saveCurso(Curso curso, Model model){
+        cursoService.saveCurso(curso);
+        model.addAttribute("conteudo", new Conteudo());
+        
+        /*ModelAndView mav = new ModelAndView();
+        mav.setViewName("conteudo-form");
+        mav.addObject("conteudo", new Conteudo());
+        mav.addObject("curso", curso);
+        
+        return mav;*/
+        return curso;
+    }
+    
     /*
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){

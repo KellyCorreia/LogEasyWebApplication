@@ -1,10 +1,18 @@
 package com.br.ifma.logeasy.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -25,7 +33,7 @@ public class Questao extends AbstractDomainClass implements Serializable {
 	private Conteudo conteudo;
 
 	//bi-directional many-to-one association to Alternativa
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="questao", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy="questao", fetch = FetchType.EAGER)
 	private List<Alternativa> alternativas;
 
 	public Questao() {
