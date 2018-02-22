@@ -7,15 +7,15 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
+<div>
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
+<div class="container">
      <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
             <div class="col-sm-10"><h2>Detalhes da Questão</h2></div>
             <div class="col-sm-2" style="padding-top: 25px;">
          		<span sec:authorize="isAuthenticated()">
-              		<input type="submit" value="Sign Out"/>
+              		<!-- <input type="submit" value="Sign Out"/> -->
            		</span>
            	</div>
         </div>
@@ -44,24 +44,30 @@
             </div>
         </div>
         <div class="form-group" th:if="${not #lists.isEmpty(questao.alternativas)}">
-	  		<table class="table table-bordered">
-	           <thead>
-	             <tr>
-	               <th class="col-sm-1" th:text="Id">Id</th>
-	               <th class="col-sm-7" th:text="Texto">Texto</th>
-	               <th class="col-sm-2" th:text="Valor">Valor</th>
-	             </tr>
-	           </thead>
-	           <tbody>
-	             <tr th:each="alt : ${questao.alternativas}">
-	               <td th:text="${alt.id}"></td>
-	               <td th:text="${alt.texto}"></td>
-	               <td th:text="${alt.valor}"></td>
-	             </tr>
-	           </tbody>
-	         </table>
+        	<div class="col-sm-10 pull-right">
+		       	<label class="col-sm-2 control-label"><h3>Alternativas</h3></label>
+		    </div>
+		    <div class="col-sm-10 pull-right">
+		  		<table class="table table-bordered">
+		           <thead>
+		             <tr>
+		               <th class="col-sm-1" th:text="Id">Id</th>
+		               <th class="col-sm-7" th:text="Texto">Texto</th>
+		               <th class="col-sm-2" th:text="Valor">Valor</th>
+		             </tr>
+		           </thead>
+		           <tbody>
+		             <tr th:each="alt : ${questao.alternativas}">
+		               <td th:text="${alt.id}"></td>
+		               <td th:text="${alt.texto}"></td>
+		               <td th:text="${alt.valor}"></td>
+		             </tr>
+		           </tbody>
+		         </table>
+		     </div>
         </div>
      </form>
+  </div>
 </div>
 
 </body>

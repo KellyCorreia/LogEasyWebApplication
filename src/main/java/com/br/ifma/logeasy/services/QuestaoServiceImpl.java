@@ -36,18 +36,27 @@ public class QuestaoServiceImpl implements QuestaoService {
     public Questao saveQuestao(Questao questao) {
     	Questao questaoSalva;
     	Iterable<Alternativa> listaAlt;
+    	
+    	for(Alternativa a : questao.getAlternativas()) {
+    		a.setQuestao(questao);
+    	}
+    	
     	questaoSalva = questaoRepository.save(questao);
-    	listaAlt = alternativaService.listAlternativasByQuestao(questaoSalva);
+    	
+    	/*listaAlt = alternativaService.listAlternativasByQuestao(questaoSalva);
+    	
     	for(Alternativa alt : listaAlt) {
     		alternativaService.deleteAlternativa(alt.getId());
     	}
+    	
     	if(!questao.getAlternativas().isEmpty()) {
     		for(Alternativa alt: questao.getAlternativas()) {
         		alt.setQuestao(questaoSalva);
         		alternativaService.saveAlternativa(alt);
         	}
-    	}
-        return questao;
+    	}*/
+    	
+        return questaoSalva;
     }
 
     @Override

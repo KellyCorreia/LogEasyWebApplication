@@ -7,15 +7,15 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
+<div>
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
+<div class="container">
      <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
             <div class="col-sm-10"><h2>Detalhes do Disciplina</h2></div>
             <div class="col-sm-2" style="padding-top: 25px;">
          		<span sec:authorize="isAuthenticated()">
-              		<input type="submit" value="Sign Out"/>
+              		
            		</span>
            	</div>
         </div>
@@ -44,6 +44,7 @@
             </div>
         </div>
      </form>
+  </div>
 </div>
 
 </body>
