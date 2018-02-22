@@ -43,6 +43,24 @@
                 <p class="form-control-static" th:text="${questao.conteudo.nome}">conteudo</p>
             </div>
         </div>
+        <div class="form-group" th:if="${not #lists.isEmpty(questao.alternativas)}">
+	  		<table class="table table-bordered">
+	           <thead>
+	             <tr>
+	               <th class="col-sm-1" th:text="Id">Id</th>
+	               <th class="col-sm-7" th:text="Texto">Texto</th>
+	               <th class="col-sm-2" th:text="Valor">Valor</th>
+	             </tr>
+	           </thead>
+	           <tbody>
+	             <tr th:each="alt : ${questao.alternativas}">
+	               <td th:text="${alt.id}"></td>
+	               <td th:text="${alt.texto}"></td>
+	               <td th:text="${alt.valor}"></td>
+	             </tr>
+	           </tbody>
+	         </table>
+        </div>
      </form>
 </div>
 

@@ -35,8 +35,13 @@ public class QuestaoServiceImpl implements QuestaoService {
     @Override
     public Questao saveQuestao(Questao questao) {
     	Questao questaoSalva;
+    	Iterable<Alternativa> listaAlt;
     	questaoSalva = questaoRepository.save(questao);
-    	if(questao.getAlternativas()!=null) {
+    	listaAlt = alternativaService.listAlternativasByQuestao(questaoSalva);
+    	for(Alternativa alt : listaAlt) {
+    		alternativaService.deleteAlternativa(alt.getId());
+    	}
+    	if(!questao.getAlternativas().isEmpty()) {
     		for(Alternativa alt: questao.getAlternativas()) {
         		alt.setQuestao(questaoSalva);
         		alternativaService.saveAlternativa(alt);

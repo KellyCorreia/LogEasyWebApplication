@@ -4,65 +4,57 @@
 	<meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
 </head>
-<body>
-
-<div class="container">
-    <div th:fragment="header">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+<body th:fragment="header">
+		<div class="w3-container">
+        <nav class="navbar-expand-lg bg-secondary fixed-top" id="mainNav">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <a class="navbar-brand" href="#" th:href="@{/}">LogEasy Professor</a>
                 </div>
-                
-                <ul class="nav navbar-nav">
-                	<li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplina<span class="caret"></span></a>
-				        <ul class="dropdown-menu">
-				          <li><a href="#" th:href="@{/disciplinas}">Disciplinas</a></li>
-				          <li><a href="#" th:href="@{/disciplina/new}" sec:authorize="hasAuthority('ADMIN')">Nova Disciplina</a></li>
-				        </ul>
-				    </li>
-				    <li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cursos<span class="caret"></span></a>
-				        <ul class="dropdown-menu">
-				          <li><a href="#" th:href="@{/cursos}">Cursos</a></li>
-				          <li><a href="#" th:href="@{/curso/new}" sec:authorize="hasAuthority('ADMIN')">Novo Curso</a></li>
-				        </ul>
-				    </li>
-                   	<li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Conteúdo<span class="caret"></span></a>
-				        <ul class="dropdown-menu">
-				          <li><a href="#" th:href="@{/conteudos}">Conteúdos</a></li>
-				          <li><a href="#" th:href="@{/conteudo/new}" sec:authorize="hasAuthority('ADMIN')">Novo Conteúdo</a></li>
-				        </ul>
-				    </li>
-				    <li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questão<span class="caret"></span></a>
-				        <ul class="dropdown-menu">
-				          <li><a href="#" th:href="@{/questoes}">Questões</a></li>
-				          <li><a href="#" th:href="@{/questao/new}" sec:authorize="hasAuthority('ADMIN')">Nova Questão</a></li>
-				        </ul>
-				    </li>
-                    <li><a href="#" th:href="@{/login}">Sign In</a>
-                    	</li>
-                 </ul>
-                 <ul>
-                 	<li><a class="logout" href="#" th:href="@{/logout}"  sec:authorize="isAuthenticated()">Sign Out</a></li>
-                 </ul>
-            </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+	                <ul class="nav ml-auto navbar-nav">
+	                	<li class="dropdown">
+					        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplina<span class="caret"></span></a>
+					        <ul class="dropdown-menu">
+					          <li><a href="#" th:href="@{/disciplinas}">Disciplinas</a></li>
+					          <li><a href="#" th:href="@{/disciplina/new}" sec:authorize="hasAuthority('ADMIN')">Nova Disciplina</a></li>
+					        </ul>
+					    </li>
+					    <li class="dropdown">
+					        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cursos<span class="caret"></span></a>
+					        <ul class="dropdown-menu">
+					          <li><a href="#" th:href="@{/cursos}">Cursos</a></li>
+					          <li><a href="#" th:href="@{/curso/new}" sec:authorize="hasAuthority('ADMIN')">Novo Curso</a></li>
+					        </ul>
+					    </li>
+	                   	<li class="dropdown">
+					        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Conteúdo<span class="caret"></span></a>
+					        <ul class="dropdown-menu">
+					          <li><a href="#" th:href="@{/conteudos}">Conteúdos</a></li>
+					          <li><a href="#" th:href="@{/conteudo/new}" sec:authorize="hasAuthority('ADMIN')">Novo Conteúdo</a></li>
+					        </ul>
+					    </li>
+					    <li class="dropdown">
+					        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Questão<span class="caret"></span></a>
+					        <ul class="dropdown-menu">
+					          <li><a href="#" th:href="@{/questoes}">Questões</a></li>
+					          <li><a href="#" th:href="@{/questao/new}" sec:authorize="hasAuthority('ADMIN')">Nova Questão</a></li>
+					        </ul>
+					    </li>
+	                 </ul>
+	                 <ul class="nav ml-auto navbar-nav navbar-right">
+	                 	<li><a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+					    <li><a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+					    <li><a class="logout" href="#" th:href="@{/logout}"  sec:authorize="isAuthenticated()"><span class="glyphicon glyphicon-log-in"></span>Sair</a></li>
+	                 </ul>
+	             </div>
         </nav>
-        <div class="welcome">
-            <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
-        </div>
- <!--        <div class="jumbotron">
+ <!--   <div class="jumbotron">
             <div class="row text-center">
                 <div class="">
                     <h2>LogEasy Professor</h2>
                 </div>
             </div>
         </div> -->
-    </div>
-</div>
-
+   </div>
 </body>
 </html>

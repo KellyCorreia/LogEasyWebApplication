@@ -25,7 +25,7 @@ public class Questao extends AbstractDomainClass implements Serializable {
 	private Conteudo conteudo;
 
 	//bi-directional many-to-one association to Alternativa
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="questao")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="questao", fetch = FetchType.EAGER)
 	private List<Alternativa> alternativas;
 
 	public Questao() {

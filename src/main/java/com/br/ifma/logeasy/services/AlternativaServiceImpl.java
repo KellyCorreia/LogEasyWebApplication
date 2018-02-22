@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.ifma.logeasy.domain.Alternativa;
+import com.br.ifma.logeasy.domain.Questao;
 import com.br.ifma.logeasy.repositories.AlternativaRepository;
 
 @Service
@@ -34,4 +35,9 @@ public class AlternativaServiceImpl implements AlternativaService {
     public void deleteAlternativa(Integer id) {
         alternativaRepository.delete(id);
     }
+
+	@Override
+	public Iterable<Alternativa> listAlternativasByQuestao(Questao questao) {
+		return alternativaRepository.findByQuestao(questao);
+	}
 }

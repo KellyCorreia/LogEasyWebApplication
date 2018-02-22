@@ -73,8 +73,9 @@ public class QuestaoController {
 
     @RequestMapping("questao/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
+    	this.listaConteudos = conteudoService.listAllConteudos();
         model.addAttribute("questao", questaoService.getQuestaoById(id));
-        model.addAttribute("conteudos", conteudoService.listAllConteudos());
+        model.addAttribute("conteudos", this.listaConteudos);
         return "questao-form";
     }
 
@@ -85,7 +86,7 @@ public class QuestaoController {
     	questao.setId(-1 * ((int) rand.nextInt(1000)));
         model.addAttribute("questao", questao);
         this.listaConteudos = conteudoService.listAllConteudos();
-        model.addAttribute("conteudos", this.getListaConteudos());
+        model.addAttribute("conteudos", this.listaConteudos);
         return "questao-form";
     }
 
@@ -107,8 +108,10 @@ public class QuestaoController {
     	Random rand = new Random();
     	alt.setId(-1 * ((int) rand.nextInt(1000)));
     	alt.setQuestao(questao);
-    	questao.getAlternativas().add(alt);
-    	model.addAttribute("conteudos", this.getListaConteudos());
+    	if(questao.getAlternativas().size()<5) {
+    		questao.getAlternativas().add(alt);
+    	}
+    	model.addAttribute("conteudos", this.listaConteudos);
         return "questao-form";
     }
     
@@ -117,7 +120,7 @@ public class QuestaoController {
     public String removeRow(final Questao questao, final BindingResult bindingResult, final HttpServletRequest req, Model model) {
         final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
         questao.getAlternativas().remove(rowId.intValue());
-        model.addAttribute("conteudos", this.getListaConteudos());
+        model.addAttribute("conteudos", this.listaConteudos);
         return "questao-form";
     }
     
@@ -162,9 +165,7 @@ public class QuestaoController {
          return "login";
     }
 */
-
-	public Iterable<Conteudo> getListaConteudos() {
-		return listaConteudos;
-	}
+	
+	
     
 }

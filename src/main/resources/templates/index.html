@@ -6,10 +6,27 @@
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
-<body>
+<body class="bg-primary">
 
-<div class="container">
+<div class="bg-primary">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    
+    <header class="text-white">
+	        <div>
+		        <div class="welcome">
+		        	<span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+		        </div>
+		        
+		     </div>
+     </header>
+     <div class="mt-teste">
+        <div class="text-center">
+            <div>
+             <img src="../static/images/logeasy-prof-logo.png" width="500"
+             th:src="@{images/logeasy-prof-logo.png}"/>
+            </div>
+        </div>
+     </div>
 </div>
 </body>
 </html>

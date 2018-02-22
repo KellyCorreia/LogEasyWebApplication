@@ -39,26 +39,28 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Enunciado:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" th:field="*{enunciado}" />
+						<textarea rows="3" class="form-control" th:field="*{enunciado}"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Pontuação:</label>
-					<div class="col-sm-10">
+					<div class="col-sm-2">
 						<input type="number" class="form-control" th:field="*{pontuacao}" />
 					</div>
 				</div>
 				<div class="form-group">
-		            <label class="col-sm-2 control-label" th:text="Alternativas">Alternativas</label>
-		            <div class="col-sm-10">
-			            <table>
+		            <div class="col-sm-10 pull-right">
+		            	<label class="col-sm-2 control-label"><h3>Alternativas</h3></label>
+		            </div>
+		            <div class="col-sm-10 pull-right">
+			            <table class="table table-bordered">
 			              <thead>
 			                <tr>
-			                  <th th:text="Row">Row</th>
-			                  <th th:text="Texto">Texto</th>
-			                  <th th:text="Valor">Valor</th>
-			                  <th>
-			                    <button type="submit" name="addRow">Add row</button>
+			                  <th>#</th>
+			                  <th class="col-sm-8" th:text="Texto">Texto</th>
+			                  <th class="col-sm-2" th:text="Valor">Valor</th>
+			                  <th class="col-sm-1">
+			                    <button type="submit" name="addRow" class="btn btn-success glyphicon glyphicon-plus pull-right" title="Add Alternativa"></button>
 			                  </th>
 			                </tr>
 			              </thead>
@@ -66,16 +68,20 @@
 			                <tr th:each="row,rowStat : *{alternativas}">
 			                  <td th:text="${rowStat.count}">1</td>
 			                  <td>
-			                    <input type="text" th:field="*{alternativas[__${rowStat.index}__].texto}"/>
+			                  	<div>
+			                    	<input type="text" class="form-control" th:field="*{alternativas[__${rowStat.index}__].texto}"/>
+			                    </div>
 			                  </td>
 			                  <td>
-			                    <select th:field="*{alternativas[__${rowStat.index}__].valor}">
-			                      <option th:value="true">True</option>
-			                      <option th:value="false">False</option>
-			                    </select>
+			                  	<div>
+				                    <select class="form-control" th:field="*{alternativas[__${rowStat.index}__].valor}">
+				                      <option th:value="true">True</option>
+				                      <option th:value="false">False</option>
+				                    </select>
+				                </div>
 			                  </td>
 			                  <td>
-			                    <button type="submit" name="removeRow" th:value="${rowStat.index}">Remove row</button>
+			                    <button type="submit" name="removeRow" th:value="${rowStat.index}" class="btn btn-danger glyphicon glyphicon-remove pull-right"  title="Remover Alternativa"></button>
 			                  </td>
 			                </tr>
 			              </tbody>
@@ -83,8 +89,8 @@
 			        </div>
           		</div>
     
-          <div class="submit pull-right">
-            <button type="submit" class="btn btn-default" name="save" th:text="Salvar">Salvar</button>    
+          <div class="submit">
+            <button type="submit" class="btn btn-primary pull-right" name="save" th:text="Salvar">Salvar</button>    
           </div>
 			</form>
 		</div>
