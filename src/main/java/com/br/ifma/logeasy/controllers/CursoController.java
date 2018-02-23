@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.br.ifma.logeasy.domain.Curso;
 import com.br.ifma.logeasy.services.CursoService;
 import com.br.ifma.logeasy.services.DisciplinaService;
-import com.mysql.jdbc.StringUtils;
 
 @Controller
 public class CursoController {

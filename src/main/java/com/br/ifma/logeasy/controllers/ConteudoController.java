@@ -7,12 +7,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.br.ifma.logeasy.domain.Conteudo;
 import com.br.ifma.logeasy.domain.Curso;
@@ -73,11 +70,14 @@ public class ConteudoController {
     }
 
     @RequestMapping("conteudo/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("conteudo", conteudoService.getConteudoById(id));
+    public String edit(@PathVariable Integer id, Model model){;
+    	Conteudo conteudo = conteudoService.getConteudoById(id);
+        model.addAttribute("conteudo", conteudo);
         model.addAttribute("professores", professorService.listAllProfessors());
         model.addAttribute("cursos", cursoService.listAllCursos());
         model.addAttribute("niveis", nivelService.listAllNiveis());
+        model.addAttribute("curso", conteudo.getCurso());
+        model.addAttribute("disciplinas", new ArrayList<Disciplina>());
         return "conteudo-form";
     }
 
@@ -137,19 +137,14 @@ public class ConteudoController {
         model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "conteudo-form :: modalNovoCurso";
     }
-
-    @RequestMapping(value = "conteudocurso", method = RequestMethod.POST)
-    public @ResponseBody Curso saveCurso(Curso curso, Model model){
-        cursoService.saveCurso(curso);
-        model.addAttribute("conteudo", new Conteudo());
-        
-        /*ModelAndView mav = new ModelAndView();
-        mav.setViewName("conteudo-form");
-        mav.addObject("conteudo", new Conteudo());
-        mav.addObject("curso", curso);
-        
-        return mav;*/
-        return curso;
+    
+    @RequestMapping(value="conteudocurso", method=RequestMethod.POST)
+    public String saveCurso(Curso curso, Conteudo conteudo, Model model) {
+    	curso = cursoService.saveCurso(curso);
+    	conteudo.setCurso(curso);
+    	model.addAttribute("conteudo", conteudo);
+    	
+        return "conteudo-form :: divDadosCurso";
     }
     
     /*

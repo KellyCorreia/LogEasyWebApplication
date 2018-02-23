@@ -1,7 +1,6 @@
 package com.br.ifma.logeasy.controllers;
 
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.br.ifma.logeasy.domain.Alternativa;
 import com.br.ifma.logeasy.domain.Conteudo;
 import com.br.ifma.logeasy.domain.Questao;
-import com.br.ifma.logeasy.services.AlternativaService;
 import com.br.ifma.logeasy.services.ConteudoService;
-import com.br.ifma.logeasy.services.CursoService;
-import com.br.ifma.logeasy.services.NivelService;
 import com.br.ifma.logeasy.services.QuestaoService;
 
 @Controller
@@ -27,9 +23,6 @@ public class QuestaoController {
 
     private QuestaoService questaoService;
     private ConteudoService conteudoService;
-    private CursoService cursoService;
-    private NivelService nivelService;
-    private AlternativaService alternativaService;
     private Iterable<Conteudo> listaConteudos;
 
     @Autowired
@@ -40,21 +33,6 @@ public class QuestaoController {
     @Autowired
     public void setConteudoService(ConteudoService conteudoService) {
         this.conteudoService = conteudoService;
-    }
-    
-    @Autowired
-    public void setNivelService(NivelService nivelService) {
-        this.nivelService = nivelService;
-    }
-    
-    @Autowired
-    public void setCursoService(CursoService cursoService) {
-        this.cursoService = cursoService;
-    }
-    
-    @Autowired
-    public void setAlternativaService(AlternativaService alternativaService) {
-        this.alternativaService = alternativaService;
     }
 
     @RequestMapping(value = "/questoes", method = RequestMethod.GET)
