@@ -47,14 +47,14 @@ public class QuestaoServiceImpl implements QuestaoService {
     	
     	for(Alternativa alt : listaAlt) {
     		alternativaService.deleteAlternativa(alt.getId());
-    	}
+    	}*/
     	
     	if(!questao.getAlternativas().isEmpty()) {
     		for(Alternativa alt: questao.getAlternativas()) {
         		alt.setQuestao(questaoSalva);
         		alternativaService.saveAlternativa(alt);
         	}
-    	}*/
+    	}
     	
         return questaoSalva;
     }
