@@ -2,7 +2,6 @@ package com.br.ifma.logeasy.services;
 
 
 import com.br.ifma.logeasy.domain.Professor;
-import com.br.ifma.logeasy.domain.User;
 
 public interface ProfessorService {
     Iterable<Professor> listAllProfessors();

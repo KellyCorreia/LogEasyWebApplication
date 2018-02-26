@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -33,7 +34,7 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 	private Professor professor;
 	
 	//bi-directional many-to-one association to GrupoConteudo
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idcurso")
 	@Basic(fetch = FetchType.LAZY)
 	private Curso curso;

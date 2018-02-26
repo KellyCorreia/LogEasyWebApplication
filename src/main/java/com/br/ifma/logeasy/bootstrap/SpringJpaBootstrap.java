@@ -16,7 +16,6 @@ import com.br.ifma.logeasy.domain.Professor;
 import com.br.ifma.logeasy.domain.Role;
 import com.br.ifma.logeasy.domain.User;
 import com.br.ifma.logeasy.repositories.DisciplinaRepository;
-import com.br.ifma.logeasy.repositories.ProductRepository;
 import com.br.ifma.logeasy.services.CursoService;
 import com.br.ifma.logeasy.services.NivelService;
 import com.br.ifma.logeasy.services.ProfessorService;
@@ -26,7 +25,6 @@ import com.br.ifma.logeasy.services.UserService;
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ProductRepository productRepository;
     private DisciplinaRepository disciplinaRepository;
     private NivelService nivelService;
     private UserService userService;
@@ -36,11 +34,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
-    @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-    
     @Autowired
     public void setCursoService(CursoService cursoService) {
         this.cursoService = cursoService;
@@ -82,6 +75,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadCursos();*/
     }
     
+    @SuppressWarnings({ "unused" })
     private void loadProfessores() {
     	User user1;
         user1 = new User();
@@ -105,6 +99,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     }
 
+    @SuppressWarnings({ "unused" })
     private void loadRoles() {
         Role role = new Role();
         role.setRole("USER");
@@ -116,7 +111,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         log.info("Saved role" + adminRole.getRole());
     }
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
     private void assignUsersToAdminRole() {
         List<Role> roles = (List<Role>) roleService.listAll();
         List<User> users = (List<User>) userService.listAll();
@@ -133,6 +128,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         });
     }
     
+    @SuppressWarnings({ "unused" })
     private void loadDisciplinas() {
         
         Disciplina discip2 = new Disciplina();
@@ -145,6 +141,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         log.info("Disciplina Salva - id: " + discip2.getId());
     }
     
+    @SuppressWarnings({ "unused" })
     private void loadAmbientesNiveis() {
     	Ambiente amb = new Ambiente();
     	amb.setDescricao("Dominação do Ar: Poder dos Ventos");
@@ -287,6 +284,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     	
     }
     
+    @SuppressWarnings({ "unused" })
     private void loadCursos() {
     	Disciplina discip1 = new Disciplina();
         discip1.setCodigo("LOG001");
