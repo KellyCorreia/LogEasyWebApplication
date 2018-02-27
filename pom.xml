@@ -78,7 +78,7 @@
 		</dependency>
 
 		<!--encryption lib-->
-	<dependency>
+		<dependency>
 			<groupId>org.jasypt</groupId>
 			<artifactId>jasypt</artifactId>
 			<version>1.9.2</version>
@@ -88,6 +88,11 @@
 			<groupId>org.jasypt</groupId>
 			<artifactId>jasypt-springsecurity3</artifactId>
 			<version>1.9.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+	      	<artifactId>jackson-databind</artifactId>
 		</dependency>
 
 	</dependencies>

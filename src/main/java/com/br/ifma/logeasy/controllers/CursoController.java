@@ -41,6 +41,8 @@ public class CursoController {
 
     @RequestMapping("curso/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
+    	Curso curso = cursoService.getCursoById(id);
+    	model.addAttribute("curso", curso);
         model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "curso-form";
     }

@@ -1,15 +1,21 @@
 package com.br.ifma.logeasy.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.br.ifma.logeasy.domain.Conteudo;
 import com.br.ifma.logeasy.domain.Curso;
@@ -117,7 +123,6 @@ public class ConteudoController {
     
     @RequestMapping(value = "/buscaCursos")
     public String searchCursos(Curso curso, Model model){
-    	System.out.println("CHEGOU: " + curso.getDisciplina().getDescricao());
     	if(!(curso.getDisciplina() == null)) {
     		model.addAttribute("cursos", cursoService.listCursosByDisciplina(curso.getDisciplina()));
     	}else if(!StringUtils.isEmptyOrWhitespaceOnly(curso.getCodigo())) {
@@ -137,13 +142,16 @@ public class ConteudoController {
         return "conteudo-form :: modalNovoCurso";
     }
     
-    @RequestMapping(value="conteudocurso", method=RequestMethod.POST)
-    public String saveCurso(Curso curso, Conteudo conteudo, Model model) {
+    @RequestMapping(value = "/saveCurso", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public Map<String, String> saveEmployee(@ModelAttribute Curso curso, BindingResult result) {
     	curso = cursoService.saveCurso(curso);
-    	conteudo.setCurso(curso);
-    	model.addAttribute("conteudo", conteudo);
     	
-        return "conteudo-form :: divDadosCurso";
+    	Map<String, String> dados = new HashMap<>();
+    	dados.put("nomeCurso", curso.getNome());
+    	dados.put("idCurso", curso.getId().toString());
+    	
+        return dados;
     }
     
     /*

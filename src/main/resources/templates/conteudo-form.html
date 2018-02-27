@@ -29,7 +29,6 @@
 	        $('#curso-nome').val(cursoNome);
 	        $('#curso-id').val(cursoId);
 	        $("#cursoSearchModal").modal('hide');
-	        $("#cursoNovoModal").modal('hide');
 	        $(".modal-backdrop").remove();
 	    }
 	    
@@ -49,12 +48,17 @@
 	        event.preventDefault();
 	        $form = document.getElementById('formnovocurso');
 	        fordata = serialize($form);
-	        $.post($form.action, fordata, function(data){
-	        	console.log(data);
-	        	$("#dadosCurso").html(data);
-	        	$("#cursoNovoModal").modal('hide');
-		        $(".modal-backdrop").remove();
-	        });
+	        
+	        $.post({
+	            url : $form.action,
+	            data : fordata,
+	            success : function(res) {
+	            	$('#curso-id').val(res['idCurso']);
+	            	$('#curso-nome').val(res['nomeCurso']);
+ 	               	$("#cursoNovoModal").modal('hide');
+ 			       	$(".modal-backdrop").remove();
+	            }
+	         });
 	    }
 	    
 	    //não funciona, usar a de cima
@@ -91,17 +95,17 @@
         <form id="formconteudo" name="formconteudo" class="form-horizontal" th:object="${conteudo}" th:action="@{/conteudo}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
-            <div id="dadosCurso" th:fragment="divDadosCurso">
-	            <input id="curso-id" type="hidden" th:field="*{curso}" th:value="${curso.id}"/>
-	            <div class="form-group">
-	                <label class="col-sm-2 control-label">Curso:</label>
-	                <div class="col-sm-10">
-	                    <input id="curso-nome" type="text" disabled="disabled" class="form-control col-sm-4" th:value="${curso.nome}"/>
-	                    <button type="button" class="btn btn-success glyphicon glyphicon-plus pull-right" title="Novo Curso" th:onclick="'javascript:openCursoNovoModal();'">Novo</button>
-	                    <button type="button" class="btn btn-primary glyphicon glyphicon-search pull-right"  title="Buscar Curso" th:onclick="'javascript:openCursoSearchModal();'">Buscar</button>
-	                </div>
-	            </div>
+            
+            <input id="curso-id" type="hidden" th:field="*{curso}" th:value="${curso.id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Curso:</label>
+                <div class="col-sm-10">
+                    <input id="curso-nome" type="text" disabled="disabled" class="form-control col-sm-4" th:value="${curso.nome}"/>
+                    <button type="button" class="btn btn-success glyphicon glyphicon-plus pull-right" title="Novo Curso" th:onclick="'javascript:openCursoNovoModal();'">Novo</button>
+                    <button type="button" class="btn btn-primary glyphicon glyphicon-search pull-right"  title="Buscar Curso" th:onclick="'javascript:openCursoSearchModal();'">Buscar</button>
+                </div>
             </div>
+            
             <div class="form-group">
                 <label class="col-sm-2 control-label">Nível:</label>
                 <div class="col-sm-10">
@@ -201,7 +205,7 @@
 			<div class="modal-header">
 				<h4 class="modal-title">Novo Curso</h4>
 			</div>
-			<form id="formnovocurso" name="formnovocurso" class="form-horizontal" th:object="${curso}" th:action="@{/conteudocurso}" method="post">
+			<form id="formnovocurso" name="formnovocurso" class="form-horizontal" th:object="${curso}" th:action="@{/saveCurso}" method="post">
 				<div class="modal-body">
 					<input type="hidden" th:field="*{id}"/>
 	            	<input type="hidden" th:field="*{version}"/>
