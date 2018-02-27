@@ -132,7 +132,6 @@ public class ConteudoController {
     @RequestMapping("conteudocurso/new")
     public String newCurso(Model model){
     	Curso curso = new Curso();
-    	curso.setCodigo("TESTE-XXX");
         model.addAttribute("curso", curso);
         model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "conteudo-form :: modalNovoCurso";

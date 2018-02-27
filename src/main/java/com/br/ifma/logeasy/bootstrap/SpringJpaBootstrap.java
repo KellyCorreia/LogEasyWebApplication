@@ -71,8 +71,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadRoles();
         assignUsersToAdminRole();
         loadDisciplinas();
-        loadAmbientesNiveis();
-        loadCursos();*/
+        loadAmbientesNiveis();*/
+        //loadCursos();
     }
     
     @SuppressWarnings({ "unused" })

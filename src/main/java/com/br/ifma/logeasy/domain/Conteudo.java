@@ -34,7 +34,7 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 	private Professor professor;
 	
 	//bi-directional many-to-one association to GrupoConteudo
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idcurso")
 	@Basic(fetch = FetchType.LAZY)
 	private Curso curso;

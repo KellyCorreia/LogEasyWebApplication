@@ -48,7 +48,6 @@ public class CursoController {
     @RequestMapping("curso/new")
     public String newCurso(Model model){
     	Curso curso = new Curso();
-    	curso.setCodigo("TESTE-XXX");
         model.addAttribute("curso", curso);
         model.addAttribute("disciplinas", disciplinaService.listAllDisciplinas());
         return "curso-form";

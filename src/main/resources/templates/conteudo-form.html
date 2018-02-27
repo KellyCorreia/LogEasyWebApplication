@@ -97,8 +97,8 @@
 	                <label class="col-sm-2 control-label">Curso:</label>
 	                <div class="col-sm-10">
 	                    <input id="curso-nome" type="text" disabled="disabled" class="form-control col-sm-4" th:value="${curso.nome}"/>
-	                    <button type="button" class="btn btn-default col-sm-2" th:onclick="'javascript:openCursoSearchModal();'">Buscar</button>
-	                    <button type="button" class="btn btn-default col-sm-2" th:onclick="'javascript:openCursoNovoModal();'">Novo</button>
+	                    <button type="button" class="btn btn-success glyphicon glyphicon-plus pull-right" title="Novo Curso" th:onclick="'javascript:openCursoNovoModal();'">Novo</button>
+	                    <button type="button" class="btn btn-primary glyphicon glyphicon-search pull-right"  title="Buscar Curso" th:onclick="'javascript:openCursoSearchModal();'">Buscar</button>
 	                </div>
 	            </div>
             </div>
@@ -199,7 +199,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Buscar Curso</h4>
+				<h4 class="modal-title">Novo Curso</h4>
 			</div>
 			<form id="formnovocurso" name="formnovocurso" class="form-horizontal" th:object="${curso}" th:action="@{/conteudocurso}" method="post">
 				<div class="modal-body">
@@ -233,7 +233,7 @@
 		                </div>
 		            </div>
 					<div class="modal-footer">
-						<button type="button"  th:text="SalvarCurso" id="registernovocursobtn" onclick="salvarCurso()">Salvar</button>
+						<button class="btn btn-primary" type="button"  th:text="Salvar" id="registernovocursobtn" onclick="salvarCurso()">Salvar</button>
 					</div>
 				</div>
 			</form>

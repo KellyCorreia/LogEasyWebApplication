@@ -26,7 +26,7 @@ public class Curso extends AbstractDomainClass implements Serializable {
     private String descricao;
 
 	//bi-directional many-to-one association to Disciplina
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
 	@JoinColumn(name="iddisciplina")
 	private Disciplina disciplina;
 
