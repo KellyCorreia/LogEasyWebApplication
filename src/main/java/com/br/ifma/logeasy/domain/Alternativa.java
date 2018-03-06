@@ -3,7 +3,9 @@ package com.br.ifma.logeasy.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +25,7 @@ public class Alternativa extends AbstractDomainClass implements Serializable {
 	private boolean valor;
 
 	//bi-directional many-to-one association to Questao
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
 	@JoinColumn(name="idquestao", referencedColumnName = "id", nullable = false)
 	private Questao questao;
 
@@ -72,7 +74,7 @@ public class Alternativa extends AbstractDomainClass implements Serializable {
 	public boolean equals(Object obj){
 		Alternativa alt = (Alternativa) obj;
 		
-		return alt.getTexto().equals(this.getTexto());
+		return (this.texto.equals(alt.texto)&& this.questao.equals(alt.questao));
 	}
 	
 	@Override

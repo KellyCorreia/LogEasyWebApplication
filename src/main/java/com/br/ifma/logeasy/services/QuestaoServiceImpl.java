@@ -35,7 +35,6 @@ public class QuestaoServiceImpl implements QuestaoService {
     @Override
     public Questao saveQuestao(Questao questao) {
     	Questao questaoSalva;
-    	//Iterable<Alternativa> listaAlt;
     	
     	for(Alternativa a : questao.getAlternativas()) {
     		a.setQuestao(questao);
@@ -43,24 +42,12 @@ public class QuestaoServiceImpl implements QuestaoService {
     	
     	questaoSalva = questaoRepository.save(questao);
     	
-    	/*listaAlt = alternativaService.listAlternativasByQuestao(questaoSalva);
-    	
-    	for(Alternativa alt : listaAlt) {
-    		alternativaService.deleteAlternativa(alt.getId());
-    	}*/
-    	
-    	if(!questao.getAlternativas().isEmpty()) {
-    		for(Alternativa alt: questao.getAlternativas()) {
-        		alt.setQuestao(questaoSalva);
-        		alternativaService.saveAlternativa(alt);
-        	}
-    	}
-    	
         return questaoSalva;
     }
 
     @Override
     public void deleteQuestao(Integer id) {
+    	
         questaoRepository.delete(id);
     }
 }

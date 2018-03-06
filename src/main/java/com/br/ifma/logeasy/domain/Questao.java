@@ -30,12 +30,13 @@ public class Questao extends AbstractDomainClass implements Serializable {
 	@JoinColumn(name="idconteudo")
 	private Conteudo conteudo;
 
-	//bi-directional many-to-one association to Alternativa
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy="questao", fetch = FetchType.EAGER)
+	//bi-directional many-to-one association to Alternativa 
+	@OneToMany(mappedBy="questao", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Alternativa> alternativas;
 
 	public Questao() {
 		this.alternativas = new ArrayList<Alternativa>();
+		this.enunciado = " ";
 	}
 
 	public String getEnunciado() {
@@ -68,6 +69,18 @@ public class Questao extends AbstractDomainClass implements Serializable {
 
 	public void setConteudo(Conteudo conteudo) {
 		this.conteudo = conteudo;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		Questao q = (Questao) obj;
+		
+		return (this.enunciado.equals(q.enunciado));
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.enunciado.hashCode();
 	}
 
 }
