@@ -59,14 +59,6 @@ public class Curso extends AbstractDomainClass implements Serializable {
 		this.disciplina = disciplina;
 	}
 
-	public List<CursoAluno> getGrupoConteudosAlunos() {
-		return alunosCurso;
-	}
-
-	public void setGrupoConteudosAlunos(List<CursoAluno> cursosAlunos) {
-		this.alunosCurso = cursosAlunos;
-	}
-
 	public String getCodigo() {
 		return codigo;
 	}
@@ -89,14 +81,6 @@ public class Curso extends AbstractDomainClass implements Serializable {
 
 	public void setCursosAlunos(List<CursoAluno> cursosAlunos) {
 		this.alunosCurso = cursosAlunos;
-	}
-
-	public List<CursoAluno> getAlunosCurso() {
-		return alunosCurso;
-	}
-
-	public void setAlunosCurso(List<CursoAluno> alunosCurso) {
-		this.alunosCurso = alunosCurso;
 	}
 
 	public List<Conteudo> getConteudos() {

@@ -76,15 +76,7 @@ public class Conteudo extends AbstractDomainClass implements Serializable{
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-
-	public Curso getGrupoConteudo() {
-		return curso;
-	}
-
-	public void setGrupoConteudo(Curso grupoConteudo) {
-		this.curso = grupoConteudo;
-	}
-
+	
 	public Nivel getNivel() {
 		return nivel;
 	}

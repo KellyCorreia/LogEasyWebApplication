@@ -10,16 +10,10 @@ import com.br.ifma.logeasy.repositories.QuestaoRepository;
 @Service
 public class QuestaoServiceImpl implements QuestaoService {
     private QuestaoRepository questaoRepository;
-    private AlternativaService alternativaService;
 
     @Autowired
     public void setQuestaoRepository(QuestaoRepository questaoRepository) {
         this.questaoRepository = questaoRepository;
-    }
-    
-    @Autowired
-    public void setAlternativaService(AlternativaService alternativaService) {
-        this.alternativaService = alternativaService;
     }
     
     @Override
